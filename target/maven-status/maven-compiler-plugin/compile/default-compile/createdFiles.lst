@@ -1,0 +1,14 @@
+ua/tqs/Homework/Repositories/WeatherDescriptionRepository.class
+ua/tqs/Homework/Utils/Cache.class
+ua/tqs/Homework/Controllers/CacheStatsController.class
+ua/tqs/Homework/Entities/City.class
+ua/tqs/Homework/Controllers/WeatherDescriptionController.class
+ua/tqs/Homework/Controllers/CityController.class
+ua/tqs/Homework/Repositories/CacheStatsRepository.class
+ua/tqs/Homework/Entities/WeatherDescription.class
+ua/tqs/Homework/Entities/Weather.class
+ua/tqs/Homework/ScheduledTasks.class
+ua/tqs/Homework/Repositories/CityRepository.class
+ua/tqs/Homework/Entities/CacheStats.class
+ua/tqs/Homework/HomeworkApplication.class
+ua/tqs/Homework/Controllers/WebController.class

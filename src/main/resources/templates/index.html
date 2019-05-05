@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <title>Homework TQS</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        
+        <script>
+            $(document).ready(function(){
+                console.log("Iniciar")
+                
+                $("#myModal").on("shown.bs.modal", function() {
+                    var idCity = $('#city').val();
+                    var cityName = $("#city option:selected").text();
+                    console.log(cityName);
+                    $("#title").text(idCity + " - " + cityName);
+                    console.log(idCity);
+                    requestWeather(idCity);
+                })
+                
+                $(".remove").click(function() {
+                    console.log('hide')
+                    $('.pp').remove();
+                })       
+            
+                function requestWeather(id) {
+                    var result = $.ajax({
+                            url : 'http://localhost:8080/city/' + id + '/weather',
+                            type : 'GET'
+                    }).fail(console.error).done(writeOnModal);
+                }
+
+                function writeOnModal(response) {
+                    for ( let object in response) {
+                        writeTable(response[object]);
+                    }
+                }
+
+                function writeTable(weather) {
+                                      
+                    $("#weather")
+                        .append(
+                            $("<tr class=\"pp\"> </tr>")
+                                .append(
+                                    $("<td> </td>")
+                                    .    text(
+                                            weather["forecastDate"]))
+                                .append(
+                                    $("<td> </td>")
+                                        .text(
+                                            weather["tMin"]))
+                                .append(
+                                    $("<td> </td>")
+                                        .text(
+                                            weather["tMax"]))
+                                .append(
+                                    $("<td> </td>")
+                                        .text(
+                                            weather["precipitaProb"]))
+                                .append(
+                                    $("<td> </td>")
+                                        .text(
+                                            weather["idWeatherType"]))
+                                .append(
+                                    $("<td> </td>")
+                                        .text(
+                                            weather["predWindDir"])));
+                }
+            })
+
+        </script>
+        
+    </head>
+    <body>
+        <div class="container">
+            <div>
+                <h1>Estado do tempo por cidade</h1>
+            </div>
+            <div class="form-group">
+                <label for="city">Cidade: </label>
+                <select class="form-control" id="city">
+                    <option th:each="cidade: ${cidades}" th:value="${cidade.globalIdLocal}" th:text="${cidade.local}" th:class="${cidade.local}" th:id="${cidade.globalIdLocal}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pesquisar</button>
+        </div>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal fade " role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 id="title" class="modal-title">Estado do tempo</h4>
+                        <button type="button" class="close remove" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">TMax</th>
+                                    <th scope="col">TMin</th>
+                                    <th scope="col">Prob. precipitação</th>
+                                    <th scope="col">Estado do tempo</th>
+                                    <th scope="col">Vento dir.</th>
+                                </tr>
+                            </thead>
+                            <tbody id="weather">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger remove" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
