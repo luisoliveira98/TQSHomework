@@ -27,7 +27,7 @@ import ua.tqs.homework.utils.Cache;
 @Component
 public class ScheduledTasks {
      
-    private static Boolean CACHEINIT = false;
+    private static Boolean cacheInit = false;
     
     @Autowired
     private CityRepository cityRepo;
@@ -41,18 +41,18 @@ public class ScheduledTasks {
     @Scheduled(fixedRate=600000)
     public void run() throws Exception {
         
-        if (CACHEINIT==false) {
+        if (!cacheInit) {
             Cache.initCache();
             getCities();
             getWeatherDescription();
             CacheOperationsStats.createCacheStats(statsRepo, "cache");
-            CACHEINIT = true;
+            cacheInit = true;
         } else {
             Cache.resetCache();
         }
     }
     
-    public void getCities() throws IOException, JSONException {
+    public void getCities() throws IOException {
         URL urlForGetRequest = new URL("http://api.ipma.pt/open-data/distrits-islands.json");
         String readLine = null;
         HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
@@ -82,7 +82,7 @@ public class ScheduledTasks {
         }
     }
     
-    public void getWeatherDescription() throws IOException, JSONException {
+    public void getWeatherDescription() throws IOException {
         URL urlForGetRequest = new URL("http://api.ipma.pt/open-data/weather-type-classe.json");
         String readLine = null;
         HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();

@@ -51,7 +51,7 @@ public class CityController {
     
     
     @GetMapping(path = "/{id}/weather")
-    public @ResponseBody Iterable<Weather> weatherById(@PathVariable("id") int id) throws IOException, JSONException {
+    public @ResponseBody Iterable<Weather> weatherById(@PathVariable("id") int id) throws IOException {
         CacheOperationsStats.incPedidos(statsRepo.getOne(cacheName), statsRepo);
         List<Weather> weatherList;        
         if (Cache.getWeather(id).isEmpty()) {
@@ -68,7 +68,7 @@ public class CityController {
     }
     
    
-    private static List<Weather> getWeatherCity(int idCity, WeatherDescriptionRepository weatherDescRepo) throws IOException, JSONException{
+    private static List<Weather> getWeatherCity(int idCity, WeatherDescriptionRepository weatherDescRepo) throws IOException {
         List<Weather> weatherList = new ArrayList<>();
         URL urlForGetRequest = new URL("http://api.ipma.pt/open-data/forecast/meteorology/cities/daily/" + idCity + ".json");
         String readLine = null;
@@ -91,7 +91,6 @@ public class CityController {
             
             for (int i = 0; i < cities.length(); i++) {
                 JSONObject temp = cities.getJSONObject(i);
-                int idWeatherType = (int)temp.get("idWeatherType");
                 Weather weather = new Weather((String)temp.get("precipitaProb"), (String)temp.get("tMin"), (String)temp.get("tMax"), weatherDescriptionPT((int)temp.get("idWeatherType"), weatherDescRepo), (String)temp.get("predWindDir"), (String)temp.get("forecastDate"));
                 weatherList.add(weather);
             }

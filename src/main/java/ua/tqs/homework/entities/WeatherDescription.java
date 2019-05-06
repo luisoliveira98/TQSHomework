@@ -8,15 +8,14 @@ package ua.tqs.homework.entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import org.json.JSONObject;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class WeatherDescription {
     @Id
     private int idWeatherType;
-    private String descIdWeatherTypePT,
-                descIdWeatherTypeEN;
+    private String descIdWeatherTypePT;
+    private String descIdWeatherTypeEN;
     
     public WeatherDescription() {}
 
