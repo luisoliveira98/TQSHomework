@@ -9,7 +9,7 @@ import ua.tqs.homework.entities.Weather;
 
 public class Cache {
     
-    private static Cache cache;    
+    private static Cache cache = new Cache();    
     private static Map<Integer, List<Weather>> map = new HashMap<>();
     
     private  Cache() {
@@ -19,26 +19,26 @@ public class Cache {
         return map.containsKey(idCity);
     }
     
-    public static void initCache() {
-        Cache.cache = new Cache();
+    public static Cache initCache() {
+        return cache;
     }
     
-    public static void addCity(int cityId) {
+    public void addCity(int cityId) {
         List<Weather> temp = new ArrayList<>();
         map.put(cityId, temp);
     }
     
-    public static void addWeather(int cityId, Weather weather) {
+    public void addWeather(int cityId, Weather weather) {
         List<Weather> temp = map.get(cityId);
         temp.add(weather);
         map.put(cityId, temp);
     }
     
-    public static List getWeather(int cityId) {
+    public List getWeather(int cityId) {
         return map.get(cityId);
     }
     
-    public static void resetCache() {
+    public void resetCache() {
         for (int key : map.keySet()) {
             List<Weather> temp = new ArrayList<>();
             map.put(key, temp);

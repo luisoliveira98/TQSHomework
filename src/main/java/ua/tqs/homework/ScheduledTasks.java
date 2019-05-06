@@ -15,7 +15,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -39,20 +38,19 @@ public class ScheduledTasks {
     private CacheStatsRepository statsRepo;
     
     @Scheduled(fixedRate=600000)
-    public void run() throws Exception {
-        
+    public void run() throws IOException {
+        Cache cache = Cache.initCache();
         if (!cacheInit) {
-            Cache.initCache();
-            getCities();
+            getCities(cache);
             getWeatherDescription();
             CacheOperationsStats.createCacheStats(statsRepo, "cache");
             cacheInit = true;
         } else {
-            Cache.resetCache();
+            cache.resetCache();
         }
     }
     
-    public void getCities() throws IOException {
+    public void getCities(Cache cache) throws IOException {
         URL urlForGetRequest = new URL("http://api.ipma.pt/open-data/distrits-islands.json");
         String readLine = null;
         HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
@@ -76,7 +74,7 @@ public class ScheduledTasks {
                 JSONObject temp = cities.getJSONObject(i);
                 City city = new City((int)temp.get("globalIdLocal"), (String)temp.get("local") );
                 cityRepo.save(city);
-                Cache.addCity(city.getGlobalIdLocal());
+                cache.addCity(city.getGlobalIdLocal());
             }
             
         }

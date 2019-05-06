@@ -11,34 +11,36 @@ import ua.tqs.homework.utils.Cache;
 @RunWith(SpringRunner.class)
 public class TestCache {
     
+    private Cache cache;
+    
     @Before
     public void init() {
-        Cache.initCache();
+        cache = Cache.initCache();
     }
     
     @Test
     public void testAddCity(){
         int idCity = 1;
-        Cache.addCity(idCity);
+        cache.addCity(idCity);
         assertTrue(Cache.hasCity(idCity));
     }
     
     @Test
     public void testAddAndGetWeather() {
         int idCity = 1;
-        Cache.addCity(idCity);
+        cache.addCity(idCity);
         Weather weather = new Weather();
-        Cache.addWeather(idCity, weather);
-        assertTrue(Cache.getWeather(idCity).contains(weather));
+        cache.addWeather(idCity, weather);
+        assertTrue(cache.getWeather(idCity).contains(weather));
     }
     
     @Test
     public void testResetCache() {
         int idCity = 1;
-        Cache.addCity(idCity);
+        cache.addCity(idCity);
         Weather weather = new Weather();
-        Cache.addWeather(idCity, weather);
-        Cache.resetCache();
-        assertTrue(Cache.getWeather(idCity).isEmpty());
+        cache.addWeather(idCity, weather);
+        cache.resetCache();
+        assertTrue(cache.getWeather(idCity).isEmpty());
     }
 }

@@ -36,7 +36,7 @@ public class WebTest {
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cidade:'])[1]/following::button[1]")).click();
         driver.findElement(By.id("title")).click();
         assertEquals("1121400 - Portalegre", driver.findElement(By.id("title")).getText());
-        driver.findElement(By.xpath("(.//*[normalize-space(text())])[3]/following::button[1]")).click();
+        driver.findElement(By.xpath("(.//*[normalize-space(text()) and (normalize-space(.)='W' or normalize-space(.)='S' or normalize-space(.)='N' or normalize-space(.)='E' or normalize-space(.)='SE' or normalize-space(.)='SW' or normalize-space(.)='NE' or normalize-space(.)='NW' )])[2]/following::button[1]")).click();
     }
 
     @After

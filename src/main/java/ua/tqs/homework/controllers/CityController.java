@@ -52,15 +52,16 @@ public class CityController {
     @GetMapping(path = "/{id}/weather")
     public @ResponseBody Iterable<Weather> weatherById(@PathVariable("id") int id) throws IOException {
         CacheOperationsStats.incPedidos(statsRepo.getOne(cacheName), statsRepo);
-        List<Weather> weatherList;        
-        if (Cache.getWeather(id).isEmpty()) {
+        List<Weather> weatherList;
+        Cache cache = Cache.initCache();
+        if (cache.getWeather(id).isEmpty()) {
             weatherList = getWeatherCity(id, weatherDescRepo);            
             for (Weather weather : weatherList) {
-                Cache.addWeather(id, weather);
+                cache.addWeather(id, weather);
             }            
             CacheOperationsStats.incMisses(statsRepo.getOne(cacheName), statsRepo);
         } else {
-            weatherList = Cache.getWeather(id);
+            weatherList =cache.getWeather(id);
             CacheOperationsStats.incHits(statsRepo.getOne(cacheName), statsRepo);
         }
         return weatherList;

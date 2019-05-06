@@ -60,11 +60,11 @@ public class ControllerTests {
     
     @Test
     public void givenCity_getWeather() throws Exception {
-        Cache.initCache();
+        Cache cache = Cache.initCache();
         CacheOperationsStats.createCacheStats(statsRepo, "cache");
-        Cache.addCity(1);
+        cache.addCity(1);
         Weather weather = new Weather("0", "0", "0", "teste", "teste", "teste");
-        Cache.addWeather(1, weather);
+        cache.addWeather(1, weather);
         
         mvc.perform(MockMvcRequestBuilders.get("/city/1/weather")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -80,14 +80,14 @@ public class ControllerTests {
     public void getWeatherDesc() throws Exception {
         Cache.initCache();
         CacheOperationsStats.createCacheStats(statsRepo, "cache");
-        WeatherDescription weatherDesc = new WeatherDescription(0, "teste", "test");
+        WeatherDescription weatherDesc = new WeatherDescription(100, "teste", "test");
         weatherDescRepo.save(weatherDesc);
         
         mvc.perform(MockMvcRequestBuilders.get("/weatherdescription")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].idWeatherType", is(weatherDesc.getIdWeatherType())))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].descIdWeatherTypePT", is(weatherDesc.getDescIdWeatherTypePT())))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].descIdWeatherTypeEN", is(weatherDesc.getDescIdWeatherTypeEN())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[29].idWeatherType", is(weatherDesc.getIdWeatherType())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[29].descIdWeatherTypePT", is(weatherDesc.getDescIdWeatherTypePT())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[29].descIdWeatherTypeEN", is(weatherDesc.getDescIdWeatherTypeEN())));
     }
 }
