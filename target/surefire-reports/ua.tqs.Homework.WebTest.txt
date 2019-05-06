@@ -1,25 +1,14 @@
 -------------------------------------------------------------------------------
 Test set: ua.tqs.Homework.WebTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 24.334 s <<< FAILURE! - in ua.tqs.Homework.WebTest
-test(ua.tqs.Homework.WebTest)  Time elapsed: 24.331 s  <<< ERROR!
-org.openqa.selenium.WebDriverException: 
-Failed to convert data to an object
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 9.223 s <<< FAILURE! - in ua.tqs.Homework.WebTest
+test(ua.tqs.Homework.WebTest)  Time elapsed: 9.223 s  <<< ERROR!
+org.openqa.selenium.ElementClickInterceptedException: 
+Element <button class="btn btn-primary" type="submit"> is not clickable at point (114,160) because another element <div id="myModal" class="modal fade in"> obscures it
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
 System info: host: 'luisPC', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '4.18.0-17-generic', java.version: '1.8.0_191'
 Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 66.0.3, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 4605, moz:profile: /tmp/rust_mozprofile.715F6T..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 4.18.0-17-generic, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: bc68b538-38b3-422f-8464-fa86d94f29a3
-*** Element info: {Using=xpath, value=(.//*[normalize-space(text()) and normalize-space(.)='SW'])[3]/following::button[1]}
-	at ua.tqs.Homework.WebTest.test(WebTest.java:38)
-
-test(ua.tqs.Homework.WebTest)  Time elapsed: 24.332 s  <<< ERROR!
-org.openqa.selenium.WebDriverException: 
-Failed to decode response from marionette
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'luisPC', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '4.18.0-17-generic', java.version: '1.8.0_191'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 66.0.3, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 4605, moz:profile: /tmp/rust_mozprofile.715F6T..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 4.18.0-17-generic, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: bc68b538-38b3-422f-8464-fa86d94f29a3
-	at ua.tqs.Homework.WebTest.tearDown(WebTest.java:43)
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 66.0.3, javascriptEnabled: true, moz:accessibilityChecks: false, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 23387, moz:profile: /tmp/rust_mozprofile.mmWivr..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 4.18.0-17-generic, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: c2a0e7a0-77ae-44d6-b259-5dc3c3a28aa8
+	at ua.tqs.Homework.WebTest.test(WebTest.java:39)
 
