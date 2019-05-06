@@ -1,2 +1,5 @@
 ua/tqs/Homework/HomeworkApplicationTests.class
 ua/tqs/Homework/TestEntities/CityRepositoryTest.class
+ua/tqs/Homework/TestEntities/CacheStatsRepoTest.class
+ua/tqs/Homework/TestUtils/TestCache.class
+ua/tqs/Homework/TestEntities/WeatherDescTest.class

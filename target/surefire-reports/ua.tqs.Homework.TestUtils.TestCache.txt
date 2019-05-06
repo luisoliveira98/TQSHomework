@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ua.tqs.Homework.TestUtils.TestCache
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s - in ua.tqs.Homework.TestUtils.TestCache
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s - in ua.tqs.Homework.TestUtils.TestCache

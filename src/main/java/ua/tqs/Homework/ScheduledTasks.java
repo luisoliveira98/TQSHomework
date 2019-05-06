@@ -10,20 +10,14 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 import ua.tqs.Homework.Entities.City;
-import ua.tqs.Homework.Entities.Weather;
 import ua.tqs.Homework.Entities.WeatherDescription;
 import ua.tqs.Homework.Repositories.*;
 import ua.tqs.Homework.Utils.Cache;
@@ -44,7 +38,7 @@ public class ScheduledTasks {
     @Autowired
     private CacheStatsRepository statsRepo;
     
-    @Scheduled(fixedRate=60000)
+    @Scheduled(fixedRate=600000)
     public void run() throws Exception {
         if (CACHEINIT==false) {
             Cache.initCache();

@@ -45,14 +45,6 @@ public class CityController {
         return cityRepo.findAll();
     }
     
-    @GetMapping(path = "/{id}")
-    public City findById(@PathVariable("id") int id) {
-        CacheOperationsStats.incPedidos(statsRepo.getOne("cache"), statsRepo);
-        City city = null;
-        city = cityRepo.getOne(id);
-        return city;
-    }
-    
     
     @GetMapping(path = "/{id}/weather")
     public @ResponseBody Iterable<Weather> weatherById(@PathVariable("id") int id) throws Exception {
