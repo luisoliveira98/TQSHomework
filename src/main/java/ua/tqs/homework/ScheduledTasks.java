@@ -92,7 +92,7 @@ public class ScheduledTasks {
         if (responseCode == HttpURLConnection.HTTP_OK) {
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(conection.getInputStream()));
-            StringBuffer response = new StringBuffer();
+            StringBuilder response = new StringBuilder();
             while ((readLine = in.readLine()) != null) {
                 response.append(readLine);
             }
